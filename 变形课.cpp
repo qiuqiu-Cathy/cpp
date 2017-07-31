@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //bfs和dfs专题
 /*
       呃......变形课上Harry碰到了一点小麻烦,因为他并不像Hermione那样能够记住所有的咒语而随意的将一个棒球变成刺猬什么的,但是他发现了变形咒语的一个统一规律:如果咒语是以a开头b结尾的一个单词,那么它的作用就恰好是使A物体变成B物体.
@@ -83,3 +84,53 @@ int main()
 	}
 	return 0;
 }
+=======
+#include <iostream>
+#include <cstring>
+#include <cstdio>
+using namespace std;
+int Map[30][30];
+int flag=0;
+int vis[30];
+void dfs(int x)
+{
+    if(x=='m'-'a')
+    {
+        flag=1;
+        return;
+    }
+    for(int i=0;i<26;i++)
+    {
+        if(Map[x][i]&&!vis[i])
+        {
+            vis[i]=1;
+            dfs(i);
+        }
+    }
+}
+int main()
+{
+    string s;
+    flag=0;
+    memset(Map,0,sizeof(Map));
+    memset(vis,0,sizeof(vis));
+    while(cin >> s)
+    {
+        Map[s[0]-'a'][s[s.length()-1]-'a']=1;
+        while(cin >> s&&s[0]!='0')
+        {
+            Map[s[0]-'a'][s[s.length()-1]-'a']=1;
+        }
+        dfs('b'-'a');
+        if(flag==1)
+            cout << "Yes." << endl;
+        else
+            cout  << "No." <<endl;
+        memset(Map,0,sizeof(Map));
+        memset(vis,0,sizeof(vis));
+        flag=0;
+    }
+    //return 0;
+}
+
+>>>>>>> 02fbb1fefab29fd30acbef464460bbaf0b1f9d77
